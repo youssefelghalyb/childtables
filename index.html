@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Modular Dynamic Multi-Tenant Grid System</title>
+    <!-- Syncfusion Essential JS 1 CSS -->
+    <link href="https://cdn.syncfusion.com/16.4.0.52/js/web/flat-azure/ej.web.all.min.css" rel="stylesheet" />
+    
+    <!-- jQuery and jQuery UI Dependencies -->
+    <script src="https://cdn.syncfusion.com/js/assets/external/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.syncfusion.com/js/assets/external/jquery.easing.1.3.min.js"></script>
+    <script src="https://cdn.syncfusion.com/js/assets/external/jquery.globalize.min.js"></script>
+    <script src="https://cdn.syncfusion.com/js/assets/external/jsrender.min.js"></script>
+    
+    <!-- Syncfusion Essential JS -->
+    <script src="https://cdn.syncfusion.com/16.4.0.52/js/web/ej.web.all.min.js"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- CSS Styles -->
+    <link rel="stylesheet" href="grid-system.css">
+</head>
+<body>
+    <div class="tenant-container" id="mainContainer">
+        <div class="tenant-header">
+            <div class="tenant-title">Modular Dynamic Multi-Tenant Grid System</div>
+            <div class="controls">
+                <select id="themeSelector">
+                    <option value="default">Default Theme</option>
+                    <option value="blue">Blue Theme</option>
+                    <option value="green">Green Theme</option>
+                    <option value="purple">Purple Theme</option>
+                    <option value="orange">Orange Theme</option>
+                </select>
+                <button id="refreshBtn">Refresh</button>
+            </div>
+        </div>
+        
+        <div class="api-controls">
+            <label for="apiEndpoint">API Endpoint:</label>
+            <input type="text" id="apiEndpoint" value="http://localhost/modframework/public/api/user-management/roles" style="width: 350px;" />
+            <button id="loadDataBtn">Load Data</button>
+        </div>
+        
+        <div id="loadingContainer" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <div>Loading data...</div>
+        </div>
+        
+        <div id="mainGridContainer" class="grid-container">
+            <div id="MainGrid"></div>
+        </div>
+    </div>
+
+    <!-- Module scripts -->
+    <script src="config/api-config.js"></script>
+    <script src="modules/ui-manager.js"></script>
+    <script src="modules/theme-manager.js"></script>
+    <script src="modules/data-service.js"></script>
+    <script src="modules/template-engine.js"></script>
+    <script src="modules/column-mapper.js"></script>
+    <script src="modules/grid-manager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
