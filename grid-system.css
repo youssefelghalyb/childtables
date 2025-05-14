@@ -1,0 +1,282 @@
+/* Enhanced CSS for Hierarchical Grid System */
+
+/* Main container styles */
+.tenant-container {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tenant-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.api-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tenant-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.grid-container {
+    position: relative;
+}
+
+/* Detail view styles */
+.detail-container {
+    padding: 15px;
+    overflow: visible;
+}
+
+.nested-detail-container {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    border: 1px solid #eaeaea;
+    overflow: visible;
+}
+
+.info-section {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.info-item {
+    margin-right: 20px;
+    margin-bottom: 8px;
+    min-width: 200px;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 15px 0 10px 0;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* Tab styles */
+.detail-tabs {
+    margin-top: 15px;
+}
+
+.tab-content {
+    min-height: 200px;
+    height: auto !important;
+    overflow: visible;
+    position: relative;
+}
+
+.nested-detail-tabs {
+    margin-top: 10px;
+}
+
+.nested-tab-content {
+    min-height: 150px;
+    height: auto !important;
+    overflow: visible;
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+/* Critical grid fixes */
+.e-grid { 
+    margin-bottom: 20px;
+    height: auto !important;
+}
+
+.child-grid, .nested-child-grid {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.e-detailcell {
+    overflow: visible !important;
+    position: relative;
+}
+
+.e-detailrow {
+    position: relative;
+}
+
+.e-detailindentcell {
+    height: auto !important;
+}
+
+.e-gridcontent {
+    overflow: visible;
+    height: auto !important;
+}
+
+.e-content {
+    height: auto !important;
+    overflow: visible;
+}
+
+.e-table {
+    height: auto !important;
+}
+
+.e-rowcell, .e-headercelldiv {
+    position: relative;
+}
+
+.e-detailrowexpand {
+    display: block !important;
+}
+
+.e-detailcell > div {
+    position: relative;
+    z-index: 10;
+}
+
+/* Custom renderers */
+.boolean-value {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-weight: bold;
+    color: white;
+}
+
+.boolean-true {
+    background-color: #4caf50;
+}
+
+.boolean-false {
+    background-color: #f44336;
+}
+
+/* Loading indicator */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.loading-indicator .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error styles */
+.grid-error {
+    color: #f44336;
+    padding: 15px;
+    text-align: center;
+    border: 1px dashed #f44336;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* Expansion indicator styles */
+.expand-indicator {
+    cursor: pointer;
+    color: #3498db;
+    margin-right: 5px;
+}
+
+.collapse-indicator {
+    cursor: pointer;
+    color: #e74c3c;
+    margin-right: 5px;
+}
+
+/* Nested levels styling */
+.level-0 {
+    border-left: none;
+}
+
+.level-1 {
+    border-left: 3px solid #3498db;
+}
+
+.level-2 {
+    border-left: 3px solid #2ecc71;
+}
+
+.level-3 {
+    border-left: 3px solid #f39c12;
+}
+
+/* Theme styles */
+.theme-blue .e-grid .e-headercell {
+    background-color: #e3f2fd;
+}
+
+.theme-blue .nested-detail-container {
+    background-color: #f0f8ff;
+    border-color: #cce5ff;
+}
+
+.theme-green .e-grid .e-headercell {
+    background-color: #e8f5e9;
+}
+
+.theme-green .nested-detail-container {
+    background-color: #f1f8e9;
+    border-color: #c5e1a5;
+}
+
+.theme-purple .e-grid .e-headercell {
+    background-color: #f3e5f5;
+}
+
+.theme-purple .nested-detail-container {
+    background-color: #f5e9f7;
+    border-color: #e1bee7;
+}
+
+.theme-orange .e-grid .e-headercell {
+    background-color: #fff3e0;
+}
+
+.theme-orange .nested-detail-container {
+    background-color: #fff8e1;
+    border-color: #ffe082;
+}

@@ -1,13 +1,13 @@
 /**
- * Main Application Module 
- * Coordinates all the components of the Dynamic Multi-Tenant Grid System
+ * Application Module with Support for Hierarchical Child Tables
+ * Coordinates all the components of the Enhanced Dynamic Multi-Tenant Grid System
  */
 const App = (function() {
     // Object to store the current state
     let state = {
         data: null,
         config: null,
-        childTablesConfig: null
+        childTableTree: null
     };
     
     /**
@@ -39,14 +39,16 @@ const App = (function() {
         
         DataService.loadData(
             endpoint,
-            function(data, config, childTablesConfig) {
+            function(data, config, childTableTree) {
                 // Update state
                 state.data = data;
                 state.config = config;
-                state.childTablesConfig = childTablesConfig;
+                state.childTableTree = childTableTree;
                 
-                // Initialize the main grid
-                GridManager.initializeMainGrid(data, config, childTablesConfig);
+                console.log("Child Table Tree:", childTableTree);
+                
+                // Initialize the main grid with hierarchical support
+                GridManager.initializeMainGrid(data, config, childTableTree);
                 
                 // Hide loading indicator
                 UiManager.hideLoading();
@@ -62,7 +64,7 @@ const App = (function() {
      */
     function handleRefresh() {
         if (state.data && state.config) {
-            GridManager.refreshGrids(state.data, state.config, state.childTablesConfig);
+            GridManager.refreshGrids(state.data, state.config, state.childTableTree);
         } else {
             UiManager.showError("No data available to refresh");
         }
@@ -116,6 +118,29 @@ const App = (function() {
         }
     }
     
+    /**
+     * Handle expand/collapse of nested child tables
+     * @param {string} gridId - ID of the grid
+     * @param {number} recordId - ID of the record
+     */
+    function toggleNestedGrid(gridId, recordId) {
+        // This function can be called from onclick events for custom expand/collapse buttons
+        // in nested grids if needed
+        console.log(`Toggle nested grid ${gridId} for record ${recordId}`);
+        
+        // Get the grid instance
+        const grid = $("#" + gridId).data("ejGrid");
+        
+        if (grid) {
+            // Toggle detail row
+            if (grid.isRowDetailVisible(recordId)) {
+                grid.collapseDetailRow(recordId);
+            } else {
+                grid.expandDetailRow(recordId);
+            }
+        }
+    }
+    
     // Initialize the application when the document is ready
     $(document).ready(function() {
         initialize();
@@ -125,10 +150,12 @@ const App = (function() {
     window.viewRecord = viewRecord;
     window.editRecord = editRecord;
     window.deleteRecord = deleteRecord;
+    window.toggleNestedGrid = toggleNestedGrid;
     
     // Public API
     return {
         initialize: initialize,
-        refreshData: handleLoadData
+        refreshData: handleLoadData,
+        state: state // Expose state for debugging
     };
 })();
