@@ -43,7 +43,18 @@ const ColumnMapper = (function() {
                 }
                 // For actions renderer - ALWAYS use the action_column field from API
                 else if (colDef.cellRenderer === "actionsRenderer") {
+                    column.field = colDef.field;
+                    column.headerText = colDef.headerText || 'Actions'; // Set a default header text
                     column.template = '{{{:action_column}}}';
+                    column.freeze = 'left'; // Freeze to left
+                    column.allowSorting = false; // Disable sorting
+                    column.allowFiltering = false; // Disable filtering
+                    
+                    // Add it to the beginning of the columns array
+                    columns.unshift(column);
+                    
+                    // Skip adding this column again at the end by returning early from this iteration
+                    return; // This is crucial - it skips the remaining code for this column
                 }
             }
             

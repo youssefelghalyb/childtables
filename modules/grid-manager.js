@@ -34,6 +34,45 @@ const GridManager = (function () {
       dataSource: data,
       allowPaging: true,
       allowSorting: true,
+      allowFiltering: true,
+      filterSettings: { filterType: "excel" },
+      // Fix 1: Proper configuration for edit settings
+      editSettings: { 
+        allowEditing: true, 
+        allowDeleting: true, 
+        showDeleteConfirmDialog: true,
+        editMode: "normal"  // Use inlineform instead of Normal
+      },
+      // Fix 2: Proper toolbar configuration
+      toolbarSettings: {
+        showToolbar: true,
+        toolbarItems: [ "edit", "delete", "update", "cancel", "search"]
+      },
+      // Fix 3: Add necessary event handlers for editing
+      actionBegin: function(args) {
+        console.log("Action Begin:", args.requestType);
+        // Handle various grid actions (add, edit, delete, etc.)
+        if (args.requestType === "beginedit") {
+          console.log("Beginning edit for record:", args.rowData);
+        } else if (args.requestType === "add") {
+          console.log("Adding new record");
+        } else if (args.requestType === "delete") {
+          console.log("Deleting record:", args.data);
+        }
+      },
+      actionComplete: function(args) {
+        console.log("Action Complete:", args.requestType);
+        // Handle completion of grid actions
+        if (args.requestType === "save") {
+          console.log("Saved record:", args.data);
+          // Here you would typically call an API to save the data
+          // DataService.saveRecord(args.data);
+        } else if (args.requestType === "delete") {
+          console.log("Deleted record successfully");
+          // Here you would typically call an API to confirm deletion
+          // DataService.deleteRecord(args.data);
+        }
+      },
       isResponsive: true,
       allowScrolling: false,
       allowResizing: true,
@@ -527,6 +566,7 @@ function initializeNestedChildGrid(gridId, data, config, childTableTree) {
       // Auto-generate columns
       if (data && data.length > 0) {
           var firstRecord = data[0];
+
           
           for (var key in firstRecord) {
               // Skip special fields and objects/arrays
@@ -566,11 +606,11 @@ function initializeNestedChildGrid(gridId, data, config, childTableTree) {
   // Create grid options
   var gridOptions = {
       dataSource: data,
-      allowPaging: true,
+      allowPaging: false,
       allowSorting: true,
       allowFiltering: true,
       filterSettings: { filterType: "excel" },
-      pageSettings: { pageSize: 5 },
+      pageSettings: { pageSize: 4 },
       isResponsive: true,
       enableAutoResize: true,
       columns: columns

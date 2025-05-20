@@ -6,10 +6,10 @@ const ApiConfig = (function() {
     // Private variables
     const apiDefaults = {
         // Default API settings
-        baseUrl: 'http://localhost/modframework/public/api/',
+        baseUrl: 'http://modulusframework.ddev.site/api/',
         defaultEndpoint: 'user-management/roles',
         // Authentication token - should be obtained securely in a real app
-        authToken: '23|WXqYoK6GWHFAZfiIABUoZfqylREQHbDFWKqqtZ7k22db2b8c',
+        authToken: '31|alKa4TzSkngebuyOyVJYTDJ5S8iKCDbBZwbvQzD63fbe7b5a',
         // Default request headers
         headers: {
             'Content-Type': 'application/json'
